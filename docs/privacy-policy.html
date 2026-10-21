@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sous: Privacy Policy</title>
+  <link rel="stylesheet" href="policy.css" />
+</head>
+<body>
+  <main>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: October 2026</p>
+
+    <p>Sous is a hackathon prototype: an MCP server that suggests recipes based on ingredients a customer tells it about. This policy describes what the current version of Sous does and does not do with the information it receives.</p>
+
+    <h2>What Sous keeps during a conversation</h2>
+    <ul>
+      <li>The ingredients you say you have on hand.</li>
+      <li>Any dietary restrictions (for example, vegan) or allergies you mention.</li>
+      <li>Any meals you ask it to schedule.</li>
+    </ul>
+    <p>This information is held only in server memory for the lifetime of one MCP session. It is not written to a database, file, or log, and it is discarded when the session ends or the server restarts.</p>
+
+    <h2>Allergy information</h2>
+    <p>Allergies can be considered health-related information. Sous uses them only to filter recipes inside the server, never sends them to any other service, and keeps them only for the current session.</p>
+
+    <h2>Optional Amazon Bedrock ranking</h2>
+    <p>By default Sous ranks recipes locally and makes no outbound calls. If the operator enables Amazon Bedrock ranking, Sous sends the list of pantry ingredients and the names and ingredients of candidate recipes to Amazon Bedrock in the operator's own AWS account to score them. It does not send dietary restrictions, allergies, scheduled meals, session identifiers, or any account information.</p>
+
+    <h2>What Sous does not do</h2>
+    <ul>
+      <li>It does not require an account or collect your name, email address, or contact details.</li>
+      <li>It does not use account linking or store Amazon account identifiers.</li>
+      <li>It does not sell or share your information with third parties, other than the optional Amazon Bedrock ranking described above.</li>
+      <li>It does not use your information to train any model.</li>
+    </ul>
+
+    <h2>Changes to this policy</h2>
+    <p>As functionality changes, this policy will be updated before the change ships. Check this page for the current version.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this project can be raised on the project's GitHub repository issue tracker.</p>
+
+    <p class="disclaimer">This page describes a hackathon prototype and is not legal advice. Have it reviewed by a qualified professional before relying on it for a commercial release.</p>
+  </main>
+</body>
+</html>

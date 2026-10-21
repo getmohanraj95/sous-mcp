@@ -1,0 +1,185 @@
+:root {
+  color-scheme: light;
+  --steel: #dce0dc;
+  --steel-deep: #c9cfca;
+  --ink: #1d2a22;
+  --ink-soft: #4b5a50;
+  --paper: #fffef9;
+  --paprika: #b4531c;
+  --on-paprika: #ffffff;
+  --sage: #5f7a58;
+  --rail: #7d8681;
+  --focus: #1f5fbf;
+  --font-ui: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-ticket: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --steel: #171c19;
+    --steel-deep: #222924;
+    --ink: #e4e9e5;
+    --ink-soft: #a7b2aa;
+    --paper: #f6f3ea;
+    --paprika: #e0773a;
+    --on-paprika: #1d2a22;
+    --sage: #8fac86;
+    --rail: #59625c;
+    --focus: #8ab4ff;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--steel);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* Masthead */
+.masthead {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: 0.5rem 2rem; padding: 1.25rem clamp(1rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--steel-deep);
+}
+.brand { display: flex; align-items: baseline; gap: 0.75rem; }
+.wordmark { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; color: var(--paprika); }
+.subtitle { color: var(--ink-soft); }
+.status { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+.status.is-live::before {
+  content: ""; display: inline-block; width: 0.55rem; height: 0.55rem; margin-right: 0.45rem;
+  border-radius: 50%; background: var(--sage); vertical-align: 0.05rem;
+}
+.status.is-down { color: var(--paprika); }
+
+/* Layout */
+.station {
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2.5rem); padding: 1.5rem clamp(1rem, 4vw, 2.5rem) 3rem;
+  max-width: 1280px; margin: 0 auto;
+}
+@media (max-width: 860px) { .station { grid-template-columns: 1fr; } }
+
+/* Conversation */
+.conversation { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+.transcript {
+  list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.9rem;
+  max-height: 58vh; overflow-y: auto; padding-right: 0.25rem;
+}
+.empty-state p { margin: 0; max-width: 46ch; color: var(--ink-soft); font-size: 1.1rem; }
+.line { max-width: 62ch; }
+.line .who { display: block; font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 0.15rem; }
+.line p { margin: 0; }
+.line.user { align-self: flex-end; text-align: right; }
+.line.user p { font-size: 1.05rem; }
+.line.sous p { font-size: 1.15rem; }
+.line .tool-call {
+  display: inline-block; margin-top: 0.35rem; font-family: var(--font-ticket); font-size: 0.8rem;
+  color: var(--ink-soft); border-left: 3px solid var(--sage); padding-left: 0.5rem;
+}
+.line .tool-call.is-error { border-left-color: var(--paprika); }
+
+.suggestions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.suggestions button {
+  font: inherit; font-size: 0.9rem; color: var(--ink); background: transparent; cursor: pointer;
+  border: 1px solid var(--rail); border-radius: 999px; padding: 0.4rem 0.85rem; text-align: left;
+}
+.suggestions button:hover { border-color: var(--ink); }
+
+.composer { display: flex; gap: 0.5rem; }
+.composer input {
+  flex: 1; min-width: 0; font: inherit; font-size: 1.05rem; color: var(--ink);
+  background: var(--steel); border: 2px solid var(--ink); border-radius: 0.5rem; padding: 0.7rem 0.9rem;
+}
+.composer button {
+  font: inherit; font-weight: 700; border-radius: 0.5rem; padding: 0.7rem 1.1rem; cursor: pointer;
+}
+.composer .send { background: var(--paprika); color: var(--on-paprika); border: 2px solid var(--paprika); }
+.composer .mic { background: transparent; color: var(--ink); border: 2px solid var(--ink); }
+.composer .mic[aria-pressed="true"] { background: var(--ink); color: var(--steel); }
+.composer button:disabled { opacity: 0.55; cursor: progress; }
+.speak-toggle { font-size: 0.9rem; color: var(--ink-soft); }
+
+/* The pass: rail and tickets */
+.pass { position: relative; min-width: 0; }
+.rail {
+  height: 0.6rem; border-radius: 0.3rem;
+  background: linear-gradient(var(--rail), var(--steel-deep));
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.ticket-slot { min-height: 14rem; padding: 0 1.25rem; }
+.pass-empty { color: var(--ink-soft); margin: 1.25rem 0 0; }
+
+.ticket {
+  position: relative; margin: 0 auto; max-width: 26rem; background: var(--paper); color: #1d2a22;
+  font-family: var(--font-ticket); font-size: 0.9rem; line-height: 1.55;
+  padding: 1.6rem 1.25rem 1.5rem; transform-origin: top center;
+  box-shadow: 0 10px 22px rgba(29, 42, 34, 0.18);
+  /* torn bottom edge */
+  -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - 8px) no-repeat,
+    radial-gradient(circle at 6px 0, #000 6px, transparent 6.5px) bottom / 12px 8px repeat-x;
+          mask: linear-gradient(#000 0 0) top / 100% calc(100% - 8px) no-repeat,
+    radial-gradient(circle at 6px 0, #000 6px, transparent 6.5px) bottom / 12px 8px repeat-x;
+}
+.ticket::before { /* the clip holding the ticket on the rail */
+  content: ""; position: absolute; top: -0.45rem; left: 50%; width: 3.5rem; height: 1rem;
+  transform: translateX(-50%); background: var(--rail); border-radius: 0 0 0.3rem 0.3rem;
+}
+.ticket.is-new { animation: hang 420ms cubic-bezier(0.2, 0.9, 0.25, 1.15); }
+@keyframes hang {
+  from { transform: translateY(-1.5rem) rotate(-2deg); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .ticket.is-new { animation: none; } }
+
+.ticket h2 {
+  font-family: var(--font-ui); font-size: 1.3rem; line-height: 1.2; margin: 0 0 0.25rem;
+  padding-bottom: 0.6rem; border-bottom: 2px solid #b4531c;
+}
+.ticket .meta { color: #4b5a50; margin: 0 0 0.75rem; font-size: 0.8rem; }
+.ticket ul { list-style: none; margin: 0.25rem 0 0.75rem; padding: 0; }
+.ticket li { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px dotted #b8beb9; padding: 0.15rem 0; }
+.ticket li .mark-have { color: #3f6a37; }
+.ticket li .mark-need { color: #b4531c; font-weight: 600; }
+.ticket .section { margin-top: 0.75rem; font-weight: 600; }
+.ticket .recipe + .recipe { margin-top: 1.1rem; padding-top: 1rem; border-top: 2px dashed #b8beb9; }
+.ticket .recipe h3 { font-family: var(--font-ui); font-size: 1.05rem; margin: 0; }
+.ticket .score { color: #4b5a50; font-size: 0.8rem; }
+.ticket ol.steps { padding-left: 1.2rem; margin: 0.35rem 0 0; }
+.ticket ol.steps li { display: list-item; border: 0; }
+.ticket .tags { color: #4b5a50; font-size: 0.8rem; margin-top: 0.4rem; }
+
+/* Behind the scenes */
+.backstage { margin-top: 2rem; border-top: 1px solid var(--steel-deep); padding-top: 1rem; }
+.backstage summary { cursor: pointer; font-weight: 700; font-size: 1.05rem; }
+.backstage h3 { font-size: 0.95rem; margin: 1.1rem 0 0.4rem; }
+.session-facts { margin: 0.75rem 0 0; display: grid; gap: 0.3rem; }
+.session-facts div { display: grid; grid-template-columns: 9.5rem 1fr; gap: 0.5rem; }
+.session-facts dt { color: var(--ink-soft); }
+.session-facts dd { margin: 0; font-family: var(--font-ticket); font-size: 0.85rem; overflow-wrap: anywhere; }
+.tool-list, .trace { list-style: none; margin: 0; padding: 0; font-size: 0.9rem; }
+.tool-list li { padding: 0.2rem 0; }
+.tool-list code, .trace code { font-family: var(--font-ticket); font-size: 0.85rem; }
+.tool-list .ro { color: var(--ink-soft); font-size: 0.8rem; }
+.trace { max-height: 12rem; overflow-y: auto; }
+.trace li { display: grid; grid-template-columns: 6.5rem 1fr auto; gap: 0.5rem; padding: 0.15rem 0; }
+.trace .fail { color: var(--paprika); }
+.trace .ms { color: var(--ink-soft); font-size: 0.8rem; }
+.reset {
+  margin-top: 1rem; font: inherit; font-size: 0.9rem; cursor: pointer; color: var(--ink);
+  background: transparent; border: 1px solid var(--rail); border-radius: 0.4rem; padding: 0.4rem 0.8rem;
+}
+.disclosure { color: var(--ink-soft); font-size: 0.85rem; max-width: 60ch; }

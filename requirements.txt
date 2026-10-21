@@ -1,0 +1,6 @@
+# Sous MCP server.
+# Stable v1 line of the official MCP Python SDK (tested with 1.30.0).
+# `pip install mcp` alone installs v2, which reworked the API.
+mcp>=1.28,<2
+# Amazon Bedrock ranking; only imported when SOUS_RANKER=bedrock.
+boto3>=1.35

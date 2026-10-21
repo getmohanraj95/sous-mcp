@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sous: Alexa+ simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="masthead">
+    <div class="brand">
+      <span class="wordmark">Sous</span>
+      <span class="subtitle">Alexa+ simulator</span>
+    </div>
+    <p class="status" id="status" role="status">Connecting to the Sous server…</p>
+  </header>
+
+  <main class="station">
+    <section class="conversation" aria-label="Conversation">
+      <ol class="transcript" id="transcript" aria-live="polite">
+        <li class="empty-state" id="empty-state">
+          <p>Talk to Sous the way you'd talk to Alexa. Start by telling it what's in your kitchen.</p>
+        </li>
+      </ol>
+
+      <div class="suggestions" id="suggestions" aria-label="Try saying">
+        <button type="button" data-say="I have chicken breast, spinach, lemon and garlic, and I'm dairy-free">I have chicken, spinach, lemon and garlic, and I'm dairy-free</button>
+        <button type="button" data-say="What can I cook tonight?">What can I cook tonight?</button>
+        <button type="button" data-say="What am I missing for the first one?">What am I missing for the first one?</button>
+        <button type="button" data-say="Schedule it for tomorrow at 7pm for 4 people">Schedule it for tomorrow at 7pm for 4 people</button>
+      </div>
+
+      <div class="composer">
+        <label class="visually-hidden" for="utterance">Say something to Sous</label>
+        <input id="utterance" type="text" autocomplete="off" maxlength="500" placeholder="Say something to Sous" />
+        <button type="button" class="mic" id="mic" hidden aria-pressed="false" title="Speak instead of typing">Speak</button>
+        <button type="button" class="send" id="send">Send</button>
+      </div>
+      <label class="speak-toggle"><input type="checkbox" id="speak" /> Read replies aloud</label>
+    </section>
+
+    <aside class="pass" aria-label="Latest result">
+      <div class="rail" aria-hidden="true"></div>
+      <div class="ticket-slot" id="ticket-slot">
+        <p class="pass-empty">Results from Sous appear here as order tickets.</p>
+      </div>
+
+      <details class="backstage" id="backstage" open>
+        <summary>Behind the scenes</summary>
+        <dl class="session-facts">
+          <div><dt>Server</dt><dd id="fact-server">Not connected</dd></div>
+          <div><dt>Protocol</dt><dd id="fact-protocol">Not connected</dd></div>
+          <div><dt>MCP-Session-Id</dt><dd id="fact-session">Not connected</dd></div>
+        </dl>
+        <h3>Tools discovered with tools/list</h3>
+        <ul class="tool-list" id="tool-list"></ul>
+        <h3>MCP requests</h3>
+        <ol class="trace" id="trace"></ol>
+        <button type="button" class="reset" id="reset">Start a new session</button>
+        <p class="disclosure">This page stands in for Alexa+. It turns your words into tool calls with simple rules, not an AI model. Every tool call is a real MCP request to the Sous server over Streamable HTTP.</p>
+      </details>
+    </aside>
+  </main>
+
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

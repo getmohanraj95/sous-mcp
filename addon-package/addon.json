@@ -1,0 +1,61 @@
+{
+  "manifestVersion": "1.0",
+  "storeListing": {
+    "distributionCountries": ["US"],
+    "locales": {
+      "en-US": {
+        "default": "DEFAULT",
+        "name": {
+          "value": "Sous",
+          "spokenForm": { "format": "ipa", "value": "suː" }
+        },
+        "shortDescription": "An AI sous-chef that suggests recipes from your pantry and builds shopping lists",
+        "fullDescription": "Sous is an AI sous-chef. Tell it what's in your kitchen and any dietary restrictions or allergies, and it suggests recipes that use what you already have, tells you exactly what's missing, and can schedule a meal for later. Sous remembers your pantry and preferences for the rest of the conversation, so you can go from 'what can I cook tonight' to 'what am I missing' to 'put it on the meal plan' without repeating yourself.",
+        "examplePhrases": [
+          "What can I cook with what I have?",
+          "I have chicken, spinach, and lemon, and I'm dairy-free",
+          "What am I missing for the lemon spinach chicken?",
+          "Schedule the lemon spinach chicken for tomorrow at 7pm"
+        ],
+        "privacyAndCompliance": {
+          "privacyPolicyUrl": "https://REPLACE_WITH_YOUR_GITHUB_USERNAME.github.io/sous-mcp/privacy-policy.html",
+          "termsOfUseUrl": "https://REPLACE_WITH_YOUR_GITHUB_USERNAME.github.io/sous-mcp/terms-of-use.html"
+        },
+        "mediaAssets": {
+          "icons": {
+            "light": [
+              { "size": "72x72", "uri": "https://REPLACE_WITH_YOUR_GITHUB_USERNAME.github.io/sous-mcp/assets/icons/icon-72x72.png" },
+              { "size": "64x64", "uri": "https://REPLACE_WITH_YOUR_GITHUB_USERNAME.github.io/sous-mcp/assets/icons/icon-64x64.png" },
+              { "size": "88x88", "uri": "https://REPLACE_WITH_YOUR_GITHUB_USERNAME.github.io/sous-mcp/assets/icons/icon-88x88.png" },
+              { "size": "126x126", "uri": "https://REPLACE_WITH_YOUR_GITHUB_USERNAME.github.io/sous-mcp/assets/icons/icon-126x126.png" },
+              { "size": "180x180", "uri": "https://REPLACE_WITH_YOUR_GITHUB_USERNAME.github.io/sous-mcp/assets/icons/icon-180x180.png" },
+              { "size": "241x241", "uri": "https://REPLACE_WITH_YOUR_GITHUB_USERNAME.github.io/sous-mcp/assets/icons/icon-241x241.png" }
+            ],
+            "dark": []
+          },
+          "carouselImages": [
+            {
+              "uri": "https://REPLACE_WITH_YOUR_GITHUB_USERNAME.github.io/sous-mcp/assets/carousel/carousel-1.png",
+              "altText": "Sous logo of a pot and spoon with the tagline: your AI sous-chef, cook from what's already in your kitchen",
+              "size": "600x900"
+            }
+          ],
+          "bannerImages": []
+        }
+      }
+    }
+  },
+  "integrations": [
+    {
+      "type": "MCP",
+      "config": {
+        "endpoints": {
+          "default": {
+            "type": "HTTPS",
+            "uri": "https://REPLACE_WITH_YOUR_PUBLIC_MCP_SERVER_URL/mcp"
+          }
+        }
+      }
+    }
+  ]
+}
